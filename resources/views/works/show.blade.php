@@ -14,5 +14,11 @@
     @endif
     
     <a href="{{ route('works.edit', $work->id) }}" class="btn btn-primary">Edit</a>
+    <form action="{{ route('works.destroy', ['work' => $work->id]) }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button class="btn btn-primary" type="submit">Șterge</button>
+</form>
+
     </div>
 @endsection

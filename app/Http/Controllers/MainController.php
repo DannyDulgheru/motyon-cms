@@ -11,7 +11,13 @@ class MainController extends Controller
 {
     $works = Work::all();
     return view('main.index', compact('works'));
-    return view('main.work', compact('works'));
 }
+
+public function show($id)
+{
+    $work = Work::findOrFail($id);
+    return view('main.work.show', compact('work'));
+}
+
 
 }

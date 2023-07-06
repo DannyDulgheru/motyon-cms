@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Work;
+use Illuminate\Routing\Redirector;
+
 
 class WorkController extends Controller
 {
@@ -40,6 +42,13 @@ public function show(Work $work)
 public function edit(Work $work)
 {
     return view('works.edit', compact('work'));
+}
+
+public function destroy(Work $work)
+{
+    $work->delete();
+    return $redirector->route('admin');
+    
 }
 
 public function update(Request $request, Work $work)

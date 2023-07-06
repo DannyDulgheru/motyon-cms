@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkController;
+use App\Http\Controllers\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,23 +25,23 @@ Route::get('/', function () {
     return view('main.index', compact('works'));
 })->name('main.index');
 
-Route::get('/main/work', function () {
-    $works = App\Models\Work::all();
-    return view('main.work', compact('works'));
-})->name('main.work');
 
+Route::get('/work', [MainController::class, 'index'])->name('main.index');
+Route::get('/work/{id}', [MainController::class, 'show'])->name('main.work.show');
+// Add other routes as needed
 
 
 Auth::routes();
 
-
 Route::middleware(['restricted'])->group(function () {
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home/works', [WorkController::class, 'index'])->name('works.index');
-Route::get('/home/works/create', [WorkController::class, 'create'])->name('works.create');
-Route::post('/home/works', [WorkController::class, 'store'])->name('works.store');
-Route::get('/home/works/{work}', [WorkController::class, 'show'])->name('works.show');
-Route::get('/home/works/{work}/edit', [WorkController::class, 'edit'])->name('works.edit');
-Route::put('/home/works/{work}', [WorkController::class, 'update'])->name('works.update');
+Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/works', [WorkController::class, 'index'])->name('works.index');
+Route::get('/admin/works/create', [WorkController::class, 'create'])->name('works.create');
+Route::post('/admin/works', [WorkController::class, 'store'])->name('works.store');
+Route::get('/admin/works/{work}', [WorkController::class, 'show'])->name('works.show');
+Route::get('/admin/works/{work}/edit', [WorkController::class, 'edit'])->name('works.edit');
+Route::put('/admin/works/{work}', [WorkController::class, 'update'])->name('works.update');
+Route::delete('admin/works/{work}', [WorkController::class, 'destroy'])->name('works.destroy');
+
 
 });

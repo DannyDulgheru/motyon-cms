@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\PhotoController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +46,8 @@ Route::get('/admin/works/{work}', [WorkController::class, 'show'])->name('works.
 Route::get('/admin/works/{work}/edit', [WorkController::class, 'edit'])->name('works.edit');
 Route::put('/admin/works/{work}', [WorkController::class, 'update'])->name('works.update');
 Route::delete('admin/works/{work}', [WorkController::class, 'destroy'])->name('works.destroy');
+
+Route::delete('admin/photos/{photo}', [PhotoController::class, 'destroy'])->name('photos.destroy');
 
 
 });

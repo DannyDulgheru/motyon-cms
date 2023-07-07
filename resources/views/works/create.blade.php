@@ -27,7 +27,12 @@
             <label for="video">Video</label>
             <input type="text" name="video" id="video" class="form-control">
         </div>
-        
+
+        <div class="form-group">
+            <label for="photos">Photos</label>
+            <input type="file" name="photos[]" multiple id="photos" class="form-control">
+        </div>
+
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
     </div>

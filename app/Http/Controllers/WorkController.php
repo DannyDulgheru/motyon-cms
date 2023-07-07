@@ -28,6 +28,13 @@ public function store(Request $request)
     $work->main_photo = $request->file('main_photo')->store('public/works');
     $work->description = $request->input('description');
     $work->video = $request->input('video');
+
+    if ($request->hasFile('photos')) {
+        foreach ($request->file('photos') as $photo) {
+            $path = $photo->store('public/photos');
+            $work->photos()->create(['path' => $path]);
+        }
+    }
     // Save the work
     $work->save();
 
@@ -59,6 +66,13 @@ public function update(Request $request, Work $work)
     }
     $work->description = $request->input('description');
     $work->video = $request->input('video');
+
+    if ($request->hasFile('photos')) {
+        foreach ($request->file('photos') as $photo) {
+            $path = $photo->store('public/photos');
+            $work->photos()->create(['path' => $path]);
+        }
+    }
     // Update the work
     $work->save();
 

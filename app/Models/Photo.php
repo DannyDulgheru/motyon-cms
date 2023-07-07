@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Work extends Model
+class Photo extends Model
 {
     use HasFactory;
 
-    public function photos()
+    protected $fillable = ['work_id', 'path'];
+
+    public function work()
     {
-        return $this->hasMany(Photo::class);
+        return $this->belongsTo(Work::class);
     }
-
 }
-
